@@ -1,8 +1,8 @@
 import React from 'react';
-import {passwordType} from "../../types/types";
 import {styled, Typography} from "@mui/material";
 import Password from "./Password";
 import {v4} from "uuid";
+import {useTypedSelector} from "../../redux/hooks/useTypedSelector";
 
 const MinimizedList = styled("ul")`
   list-style: none;
@@ -13,16 +13,14 @@ const MinimizedList = styled("ul")`
   }
 `;
 
-type PasswordListProps = {
-  list: passwordType[]
-}
-const PasswordList = ({ list }: PasswordListProps) => {
-  if (!list.length)
+const PasswordList = () => {
+  const passwords = useTypedSelector(state => state.passwords);
+  if (!passwords.length)
     return <Typography>There is no password</Typography>
   return (
     <MinimizedList>
       {
-        list.map(password => <Password key={v4()} password={password} />)
+        passwords.map(password => <Password key={v4()} password={password} />)
       }
     </MinimizedList>
   );

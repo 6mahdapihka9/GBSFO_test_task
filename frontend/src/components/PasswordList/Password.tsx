@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {passwordType} from "../../types/types";
+import {PasswordType} from "../../types/types";
 import {Box, Button, styled} from "@mui/material";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -11,7 +11,7 @@ import FixedBox from "../design/FixedBox";
 import ScrollableBox from "../design/ScrollableBox";
 
 type passwordProps = {
-  password: passwordType
+  password: PasswordType
 }
 
 const ModifiedLi = styled("li")`
@@ -22,7 +22,7 @@ const ModifiedLi = styled("li")`
     padding: 16px;
   }
 `;
-
+// todo handle all redux methods of password
 const Password = ({ password }: passwordProps ) => {
   const [visible, setVisible] = useState<boolean>(false);
   const handleChange = () => {
