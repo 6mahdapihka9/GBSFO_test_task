@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { styled, Button } from '@mui/material';
+import { useTypedDispatch } from '../../redux/hooks/useTypedDispatch';
+import {useTypedSelector} from "../../redux/hooks/useTypedSelector";
 
 const FancyNav = styled('nav')`
   display: flex;
@@ -34,8 +36,8 @@ const LinkButton = styled(Button)`
 const NavBar = () => {
   const navigate = useNavigate();
 
-  const signOut = () => {};
-  const isAuthorized = true;
+  const { signOut } = useTypedDispatch();
+  const isAuthorized = useTypedSelector(state => state.isAuthorized);
 
   const handleLogout = (e: any) => {
     e.preventDefault();
