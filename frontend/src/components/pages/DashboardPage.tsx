@@ -20,10 +20,10 @@ const DashboardPage = () => {
   // }
 
   return (
-    <div>
+    <>
       <Typography variant="h3">Passwords</Typography>
       <PasswordList />
-    </div>
+    </>
   );
 };
 

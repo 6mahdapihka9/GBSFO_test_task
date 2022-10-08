@@ -53,7 +53,6 @@ const NavBar = () => {
   return (
     <FancyNav>
       <WhiteLink to="/dashboard">Dashboard</WhiteLink>
-      <WhiteLink to="/test">Test</WhiteLink>
       <LinkGroup>
         {
           isAuthorized

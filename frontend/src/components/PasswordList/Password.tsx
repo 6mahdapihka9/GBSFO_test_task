@@ -9,19 +9,12 @@ import FitBox from "../design/FitBox";
 import FitButton from "../design/FitButton";
 import FixedBox from "../design/FixedBox";
 import ScrollableBox from "../design/ScrollableBox";
+import ModifiedLi from "../design/ModifiedLi";
 
 type passwordProps = {
   password: PasswordType
 }
 
-const ModifiedLi = styled("li")`
-  display: flex;
-  align-items: center;
-  & > * {
-    flex-basis: 100%;
-    padding: 16px;
-  }
-`;
 // todo handle all redux methods of password
 const Password = ({ password }: passwordProps ) => {
   const [visible, setVisible] = useState<boolean>(false);

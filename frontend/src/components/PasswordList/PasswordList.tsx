@@ -3,6 +3,7 @@ import {styled, Typography} from "@mui/material";
 import Password from "./Password";
 import {v4} from "uuid";
 import {useTypedSelector} from "../../redux/hooks/useTypedSelector";
+import PasswordHead from "./PasswordHead";
 
 const MinimizedList = styled("ul")`
   list-style: none;
@@ -19,6 +20,7 @@ const PasswordList = () => {
     return <Typography>There is no password</Typography>
   return (
     <MinimizedList>
+      <PasswordHead />
       {
         passwords.map(password => <Password key={v4()} password={password} />)
       }

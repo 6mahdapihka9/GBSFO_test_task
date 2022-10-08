@@ -5,7 +5,14 @@ import Footer from '../../components/structural/Footer';
 import Header from '../../components/structural/Header';
 
 const Main = styled('main')`
-  padding: 30px 100px;
+  min-width: 400px;
+  @media (min-width: 720px){
+    padding: 30px 100px;
+  }
+  @media (max-width: 720px){
+    padding: 30px 20px;
+    
+  }
 `;
 
 const MainLayout = () => (
