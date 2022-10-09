@@ -2,9 +2,9 @@ import React from 'react';
 import { Box, styled } from '@mui/material';
 
 const AbsoluteFooter = styled('footer')`
+  width: max(440px, 100%);
   margin-top: auto;
   background-color: lightgray;
-  width: 100%;
 `;
 
 const MarginedTypography = styled(Box)`
