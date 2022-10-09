@@ -6,6 +6,7 @@ export interface IUser extends Document {
   _id: string;
   passwordHash: string;
   name: string;
+  isValidPassword: (pass: string) => boolean;
 }
 
 const schema = new Schema(
