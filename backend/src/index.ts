@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import router from "./routes";
 import './config';
@@ -12,10 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors({ credentials: true, origin: '*' }));
 
-// app.use('/test', (req: Request, res: Response) => {
-//   res.send('Application works!');
-// });
-app.use('/api', router)
+app.use('/api', router);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
