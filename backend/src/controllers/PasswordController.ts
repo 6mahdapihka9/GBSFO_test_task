@@ -7,7 +7,7 @@ const PasswordController = {
       const _id = req.user;
       const password = JSON.parse(req.body.password as string);
       if (!password || !password.name || !password.value) {
-        return res.status(403).json({ message: 'error: bad request' });
+        return res.status(403).json({ error: 'bad request' });
       }
 
       await (new PasswordModel({
@@ -38,14 +38,14 @@ const PasswordController = {
       const passwordID = req.params.id;
 
       if (!password || !password.name || !password.value) {
-        return res.status(403).json({ message: 'error: bad request' });
+        return res.status(403).json({ error: 'bad request' });
       }
 
       const isSuccess = await PasswordModel.findByIdAndUpdate(passwordID, {
         ...password
       });
       if (!isSuccess) {
-        return res.status(200).json({ message: 'error: password was not found' });
+        return res.status(200).json({ error: 'password was not found' });
       }
 
       return res.status(200).json({ message: 'updated' });
@@ -59,7 +59,7 @@ const PasswordController = {
 
       const isSuccess = await PasswordModel.findByIdAndRemove(passwordID);
       if (!isSuccess) {
-        return res.status(200).json({ message: 'error: password was not found' });
+        return res.status(200).json({ error: 'password was not found' });
       }
 
       return res.status(200).json({ message: 'deleted' });
