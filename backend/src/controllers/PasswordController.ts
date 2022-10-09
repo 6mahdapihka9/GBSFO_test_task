@@ -1,18 +1,19 @@
 import { Response, Request } from 'express';
 import PasswordModel from "../models/PasswordModel";
+import {PasswordType} from "../types";
 
 const PasswordController = {
   async createPassword (req: Request, res: Response) {
     try {
       const _id = req.user;
-      const password = JSON.parse(req.body.password as string);
-      if (!password || !password.name || !password.value) {
+      const { name, value } = req.body;
+      if (!name || !value) {
         return res.status(403).json({ error: 'bad request' });
       }
 
       await (new PasswordModel({
-        name: password.name,
-        value: password.value,
+        name,
+        value,
         author: _id
       })).save();
 
@@ -34,10 +35,10 @@ const PasswordController = {
   },
   async updatePassword (req: Request, res: Response) {
     try {
-      const password = JSON.parse(req.body.password as string);
+      const password: Partial<PasswordType> = req.body.password;
       const passwordID = req.params.id;
 
-      if (!password || !password.name || !password.value) {
+      if (!password || (!password.name && !password.value)) {
         return res.status(403).json({ error: 'bad request' });
       }
 
