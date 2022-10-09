@@ -2,36 +2,6 @@ import { PasswordsStateType } from '../types';
 import { PasswordsActions, PasswordsActionTypes } from '../action-types/passwordsActionTypes';
 
 const initialState: PasswordsStateType = [
-  {
-    _id: '1',
-    name: 'default',
-    value: '1234'
-  },
-  {
-    _id: '2',
-    name: 'discord',
-    value: '1234'
-  },
-  {
-    _id: '3',
-    name: 'facebookfacebookfacebookfacebookfacebook',
-    value: '1234'
-  },
-  {
-    _id: '4',
-    name: 'youtube',
-    value: '12341234123412341234123412341234'
-  },
-  {
-    _id: '5',
-    name: 'twitter',
-    value: '1234'
-  },
-  {
-    _id: '6',
-    name: 'email',
-    value: '1234'
-  }
 ];
 
 export const passwordsReducer = (
@@ -39,9 +9,26 @@ export const passwordsReducer = (
   action: PasswordsActions,
 ): PasswordsStateType => {
   switch (action.type) {
+    case PasswordsActionTypes.CREATE_PASSWORD:
+      return [...state, action.payload];
+
     case PasswordsActionTypes.READ_PASSWORDS:
-      // todo save fetched passwords
-      return [...state];
+      return [...action.payload];
+
+    case PasswordsActionTypes.UPDATE_PASSWORD:
+      const { id, password } = action.payload;
+      return [
+        ...state.map(pass =>
+          pass._id === id
+            ? { ...pass, ...password }
+            : pass
+        )
+      ];
+
+    case PasswordsActionTypes.DELETE_PASSWORD:
+      const deletedID = action.payload;
+      return [...state.filter(pass => pass._id !== deletedID)];
+
     default:
       return [...state];
   }

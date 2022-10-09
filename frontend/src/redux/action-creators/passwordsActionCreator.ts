@@ -17,10 +17,13 @@ export const readPasswords = () => async (dispatch: Dispatch<PasswordsActions>) 
   });
 };
 
-export const updatePassword = (password: PasswordType) => async (dispatch: Dispatch<PasswordsActions>) => {
+export const updatePassword = (password: PasswordType, id: string) => async (dispatch: Dispatch<PasswordsActions>) => {
   dispatch({
     type: PasswordsActionTypes.UPDATE_PASSWORD,
-    payload: password,
+    payload: {
+      id,
+      password
+    },
   });
 };
 

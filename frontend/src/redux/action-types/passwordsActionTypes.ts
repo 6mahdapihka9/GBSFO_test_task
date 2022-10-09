@@ -17,7 +17,10 @@ interface ReadPasswordsAction {
 }
 interface UpdatePasswordAction {
     type: PasswordsActionTypes.UPDATE_PASSWORD;
-    payload: PasswordType;
+    payload: {
+        id: string,
+        password: Partial<PasswordType>
+    };
 }
 interface DeletePasswordAction {
     type: PasswordsActionTypes.DELETE_PASSWORD;
