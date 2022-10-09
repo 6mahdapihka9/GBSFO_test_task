@@ -4,6 +4,7 @@ dotenv.config();
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import router from "./routes";
+import './config';
 
 const app: Express = express();
 
