@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { styled, Button } from '@mui/material';
 import { useTypedDispatch } from '../../redux/hooks/useTypedDispatch';
-import {useTypedSelector} from "../../redux/hooks/useTypedSelector";
+import { useTypedSelector } from "../../redux/hooks/useTypedSelector";
 
 const FancyNav = styled('nav')`
   display: flex;

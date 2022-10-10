@@ -1,5 +1,4 @@
 import { Dispatch } from 'redux';
-import { PasswordType } from '../../types/types';
 import { PasswordsActions, PasswordsActionTypes } from '../action-types/passwordsActionTypes';
 import axios from '../../services/axios';
 
@@ -19,7 +18,7 @@ export const createPassword = (name: string, value: string) => async (dispatch: 
       throw new Error(response.data.error);
     }
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -36,7 +35,7 @@ export const readPasswords = () => async (dispatch: Dispatch<PasswordsActions>) 
       throw new Error(response.data.error);
     }
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -73,6 +72,6 @@ export const deletePassword = (id: string) => async (dispatch: Dispatch<Password
       throw new Error(response.data.error);
     }
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
   }
 };

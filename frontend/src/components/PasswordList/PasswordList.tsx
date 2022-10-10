@@ -1,23 +1,17 @@
-import React from 'react';
-import {styled, Typography} from "@mui/material";
+import React  from 'react';
+import { Typography } from "@mui/material";
 import Password from "./Password";
-import {v4} from "uuid";
-import {useTypedSelector} from "../../redux/hooks/useTypedSelector";
+import { v4} from "uuid";
+import { useTypedSelector } from "../../redux/hooks/useTypedSelector";
 import PasswordHead from "./PasswordHead";
-
-const MinimizedList = styled("ul")`
-  list-style: none;
-  border: 1px solid lightgray;
-  border-radius: 4px;
-  & > *:not(:last-child) {
-    border-bottom: 1px solid lightgray;
-  }
-`;
+import MinimizedList from "../design/MinimizedList";
 
 const PasswordList = () => {
   const passwords = useTypedSelector(state => state.passwords);
+
   if (!passwords.length)
     return <Typography>There is no password</Typography>
+
   return (
     <MinimizedList>
       <PasswordHead />

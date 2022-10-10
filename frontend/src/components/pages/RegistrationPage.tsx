@@ -65,7 +65,6 @@ const RegistrationPage = () => {
   const handleRegistration = (e: FormEvent) => {
     e.preventDefault();
     if (form.name && form.email && form.password) {
-      // todo validate credentials
       signUp(form.name, form.email, form.password, handleResult);
     }
   };

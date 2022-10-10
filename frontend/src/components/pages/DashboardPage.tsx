@@ -4,7 +4,6 @@ import {Typography} from "@mui/material";
 import PasswordForm from "../PasswordForm/PasswordForm";
 import {useTypedSelector} from "../../redux/hooks/useTypedSelector";
 
-
 const DashboardPage = () => {
   const isAuthorized = useTypedSelector(state => state.isAuthorized)
   if (!isAuthorized)

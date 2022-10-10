@@ -1,16 +1,8 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
-import { TextField, Button, styled } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { useTypedDispatch } from "../../redux/hooks/useTypedDispatch";
-
-const StyledForm = styled('form')`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  & > *:not(:last-child) {
-    margin-right: 10px;
-  }
-`;
+import StyledForm from "../design/StyledForm";
 
 const PasswordForm = () => {
   const [name, setName] = useState<string>('');
