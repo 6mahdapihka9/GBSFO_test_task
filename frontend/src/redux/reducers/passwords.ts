@@ -16,18 +16,21 @@ export const passwordsReducer = (
       return [...action.payload];
 
     case PasswordsActionTypes.UPDATE_PASSWORD:
-      const { id, password } = action.payload;
+      const newPassword = action.payload;
       return [
-        ...state.map(pass =>
-          pass._id === id
-            ? { ...pass, ...password }
-            : pass
+        ...state.map(prevPass =>
+          prevPass._id === newPassword._id
+            ? newPassword
+            : prevPass
         )
       ];
 
     case PasswordsActionTypes.DELETE_PASSWORD:
       const deletedID = action.payload;
       return [...state.filter(pass => pass._id !== deletedID)];
+
+    case PasswordsActionTypes.CLEAR_LIST:
+      return initialState;
 
     default:
       return [...state];

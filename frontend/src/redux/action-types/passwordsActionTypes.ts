@@ -5,6 +5,7 @@ export enum PasswordsActionTypes {
     READ_PASSWORDS = 'READ_PASSWORDS',
     UPDATE_PASSWORD = 'UPDATE_PASSWORD',
     DELETE_PASSWORD = 'DELETE_PASSWORD',
+    CLEAR_LIST = 'CLEAR_LIST',
 }
 
 interface CreatePasswordAction {
@@ -17,18 +18,19 @@ interface ReadPasswordsAction {
 }
 interface UpdatePasswordAction {
     type: PasswordsActionTypes.UPDATE_PASSWORD;
-    payload: {
-        id: string,
-        password: Partial<PasswordType>
-    };
+    payload: PasswordType;
 }
 interface DeletePasswordAction {
     type: PasswordsActionTypes.DELETE_PASSWORD;
     payload: string;
+}
+interface ClearListAction {
+    type: PasswordsActionTypes.CLEAR_LIST;
 }
 
 export type PasswordsActions =
     | CreatePasswordAction
     | ReadPasswordsAction
     | UpdatePasswordAction
-    | DeletePasswordAction;
+    | DeletePasswordAction
+    | ClearListAction;

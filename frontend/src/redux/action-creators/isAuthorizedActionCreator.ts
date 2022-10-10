@@ -5,6 +5,7 @@ import {
   IsAuthorizedActionTypes,
 } from '../action-types/isAuthorizedActionTypes';
 import { removeToken, saveToken } from '../../utils/localStorage';
+import {PasswordsActions, PasswordsActionTypes} from "../action-types/passwordsActionTypes";
 
 /* eslint-disable max-len */
 export const signUp = (name: string, email: string, password: string, callback: Function) => async () => {
@@ -49,9 +50,12 @@ export const checkToken = () => async (dispatch: Dispatch<IsAuthorizedActions>) 
   }
 };
 
-export const signOut = () => async (dispatch: Dispatch<IsAuthorizedActions>) => {
+export const signOut = () => async (dispatch: Dispatch<IsAuthorizedActions | PasswordsActions>) => {
   dispatch({
     type: IsAuthorizedActionTypes.LOGOUT_USER,
+  });
+  dispatch({
+    type: PasswordsActionTypes.CLEAR_LIST,
   });
   removeToken();
 };
