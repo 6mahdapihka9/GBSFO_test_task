@@ -5,19 +5,20 @@ import {PasswordType} from "../types";
 const PasswordController = {
   async createPassword (req: Request, res: Response) {
     try {
-      const _id = req.user;
+      const userID = req.user;
+
       const { name, value } = req.body;
       if (!name || !value) {
         return res.status(403).json({ error: 'bad request' });
       }
 
-      await (new PasswordModel({
+      const { _id } = await (new PasswordModel({
         name,
         value,
-        author: _id
+        author: userID
       })).save();
 
-      return res.status(200).json({ message: 'created' });
+      return res.status(200).json({ message: 'created', _id });
     } catch (err: any) {
       return res.status(500).json({ error: 'other server error', err });
     }
@@ -35,18 +36,19 @@ const PasswordController = {
   },
   async updatePassword (req: Request, res: Response) {
     try {
-      const password: Partial<PasswordType> = req.body.password;
+      const { name, value } = req.body;
       const passwordID = req.params.id;
 
-      if (!password || (!password.name && !password.value)) {
+      if (!name && !value) {
         return res.status(403).json({ error: 'bad request' });
       }
 
       const isSuccess = await PasswordModel.findByIdAndUpdate(passwordID, {
-        ...password
+        name,
+        value
       });
       if (!isSuccess) {
-        return res.status(200).json({ error: 'password was not found' });
+        return res.status(403).json({ error: 'password was not found' });
       }
 
       return res.status(200).json({ message: 'updated' });
@@ -60,7 +62,7 @@ const PasswordController = {
 
       const isSuccess = await PasswordModel.findByIdAndRemove(passwordID);
       if (!isSuccess) {
-        return res.status(200).json({ error: 'password was not found' });
+        return res.status(403).json({ error: 'password was not found' });
       }
 
       return res.status(200).json({ message: 'deleted' });
