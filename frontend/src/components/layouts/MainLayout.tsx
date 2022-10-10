@@ -6,12 +6,16 @@ import Header from '../../components/structural/Header';
 
 const Main = styled('main')`
   min-width: 400px;
+  
+  & > * {
+    margin-bottom: 20px;
+  }
+  
   @media (min-width: 720px){
     padding: 30px 100px;
   }
   @media (max-width: 720px){
     padding: 30px 20px;
-    
   }
 `;
 
