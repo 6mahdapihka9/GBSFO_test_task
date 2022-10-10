@@ -1,11 +1,18 @@
-import express from 'express';
-import { Request, Response } from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const app = express();
+import express, { Express } from 'express';
+import cors from 'cors';
+import router from "./routes";
+import './config';
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Application works!');
-});
+const app: Express = express();
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cors({ credentials: true, origin: '*' }));
+
+app.use('/api', router);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
